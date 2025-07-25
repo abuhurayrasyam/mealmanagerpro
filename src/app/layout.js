@@ -24,9 +24,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar></Navbar>
+        <header className="sticky top-0 z-[9999]">
+          <Navbar></Navbar>
+        </header>
         {children}
-        <Footer></Footer>
+        <footer>
+          <Footer></Footer>
+        </footer>
       </body>
     </html>
   );
