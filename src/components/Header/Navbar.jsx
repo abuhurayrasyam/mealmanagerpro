@@ -1,11 +1,15 @@
-import Link from 'next/link';
+'use client';
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
 
+    const pathname = usePathname();
+
     const navLinks = (
         <>
-            <Link href={'/'} className='btn hover:bg-secondary hover:text-white mr-2'>Home</Link>
+            <Link href={'/'} className={`m-2 text-[18px] font-bold cursor-pointer ${pathname === '/' ? 'text-primary' : ' text-secondary hover:text-accent'}`}>Home</Link>
         </>
     )
 
@@ -30,7 +34,6 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link href={'/signin'} className='btn hover:bg-secondary hover:text-white mr-2'>SignIn</Link>
-                    <Link href={'/signup'} className='btn hover:bg-secondary hover:text-white'>SignUp</Link>
                 </div>
             </div>
         </nav>

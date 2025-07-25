@@ -1,5 +1,6 @@
-import Link from 'next/link';
+'use client';
 import React from 'react';
+import Link from 'next/link';
 import { FaFacebookF, FaHome, FaInstagram, FaPhoneAlt } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
@@ -43,7 +44,7 @@ const Footer = () => {
                 </nav>
             </div>
             <div className="bg-primary border-b-5 border-secondary py-4">
-                <p className="text-center w-11/12 mx-auto md:text-sm text-[12px] text-muted font-medium">Copyright © {new Date().getFullYear()} - All right reserved by Hurayra Xpress</p>
+                <p className="text-center w-11/12 mx-auto md:text-sm text-[12px] text-muted font-medium">Copyright © {new Date().getFullYear()} - All right reserved by Meal Manager Pro</p>
             </div>
         </footer>
     );

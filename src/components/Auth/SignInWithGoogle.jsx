@@ -1,10 +1,15 @@
+'use client';
 import React from 'react';
+import { FcGoogle } from 'react-icons/fc';
 
 const SignInWithGoogle = () => {
+
+    const handleGoogleSignIn = () => {
+        
+    }
+
     return (
-        <div>
-            Sign In With Google
-        </div>
+        <button onClick={handleGoogleSignIn} className="btn btn-outline mt-1"><FcGoogle className="text-xl" />Continue with Google</button>
     );
 };
 
