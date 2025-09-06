@@ -65,6 +65,25 @@ export const authOptions = {
             }
             return true;
         },
+        
+        // Add this to attach role to token on sign in
+        async jwt({ token, user }) {
+            if (user) {
+            // On initial sign in, get user from DB and add role to token
+            const userCollection = mongodbConnect(collectionNames.usersCollection);
+            const dbUser = await userCollection.findOne({ email: user.email });
+            if (dbUser) {
+                token.role = dbUser.role || "user";
+            }
+            }
+            return token;
+        },
+
+        // Add this to expose role on session object
+        async session({ session, token }) {
+            session.user.role = token.role || "user";
+            return session;
+        },
     },
 
 }

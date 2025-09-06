@@ -10,11 +10,27 @@ const Navbar = () => {
     const { data: session, status } = useSession();
     const pathname = usePathname();
 
+    const getDashboardInfo = (role) => {
+        switch (role) {
+        case 'admin':
+            return { href: '/dashboard/admin', label: 'Admin Dashboard' };
+        case 'manager':
+            return { href: '/dashboard/manager', label: 'Manager Dashboard' };
+        case 'user':
+        default:
+            return { href: '/dashboard', label: 'Member Dashboard' };
+        }
+    };
+
     const navLinks = (
         <>
             <Link href={'/'} className={`m-2 text-[18px] font-bold cursor-pointer ${pathname === '/' ? 'text-primary' : ' text-secondary hover:text-accent'}`}>Home</Link>
         </>
     )
+
+    const dashboardInfo = session?.user?.role
+    ? getDashboardInfo(session.user.role)
+    : null;
 
     return (
         <nav className="bg-base-100 shadow-sm">
@@ -38,7 +54,10 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {
                         status == 'authenticated' ? (
-                            <SignOut></SignOut>
+                            <>
+                                <Link href={dashboardInfo.href} className='btn hover:bg-secondary hover:text-white mr-2'>{dashboardInfo.label}</Link>
+                                <SignOut></SignOut>
+                            </>
                         ) : (
                             <Link href={'/signin'} className='btn hover:bg-secondary hover:text-white mr-2'>SignIn</Link>
                         )
