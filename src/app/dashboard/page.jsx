@@ -1,10 +1,13 @@
-'use client';
-import React from 'react';
+"use client";
+import { useSession } from "next-auth/react";
+import UserProfile from "./components/UserProfile";
+import Loading from "@/components/Loading";
 
-const page = () => {
-    return (
-        <div className="text-xl font-bold">My Profile</div>
-    );
-};
+export default function Page() {
+  const { data: session, status } = useSession();
 
-export default page;
+  if (status === "loading") return <Loading></Loading>;
+  if (!session) return <div>Please Sign In</div>;
+
+  return <UserProfile email={session.user.email} />;
+}
